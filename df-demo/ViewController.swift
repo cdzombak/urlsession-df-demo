@@ -12,14 +12,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        tryFrontedRequest()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    let client = DFNetworkClient()
+
+    func tryFrontedRequest() {
+        let request = URLRequest(url: URL(string: "https://df-demo-156220.appspot-preview.com/")!)
+
+        try! client.dataTask(with: request) { (data, response, error) in
+            dump(data)
+            dump(response)
+        }.resume()
     }
-
-
 }
-
